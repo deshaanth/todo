@@ -91,11 +91,12 @@ export const realtimeService = {
   // Cloud & Server HTTP sync method
   syncWithBackend: async (tasks) => {
     try {
+      const isCapacitorNative = typeof window !== 'undefined' && window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform();
       const baseUrl = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL) 
         ? import.meta.env.VITE_API_URL 
-        : (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')
-          ? window.location.origin
-          : 'https://temporary-spry-cedar-98ao9oj.vercel.app';
+        : isCapacitorNative
+          ? 'https://temporary-spry-cedar-98ao9oj.vercel.app'
+          : 'http://localhost:5000';
 
       const response = await fetch(`${baseUrl}/api/tasks/sync`, {
         method: 'POST',

@@ -35,13 +35,14 @@ const INITIAL_SAMPLE_TASKS = [];
 export const storageService = {
   getTasks: (userId = 'default_user') => {
     try {
+      const activeUserId = userId || 'default_user';
       const raw = localStorage.getItem(KEYS.TASKS);
       if (!raw) {
         localStorage.setItem(KEYS.TASKS, JSON.stringify(INITIAL_SAMPLE_TASKS));
         return [];
       }
       const tasks = JSON.parse(raw);
-      return tasks.filter(t => t.user_id === userId || !t.user_id);
+      return tasks.filter(t => t.user_id === activeUserId || !t.user_id || (activeUserId === 'default_user' && (t.user_id === 'default_user' || !t.user_id)));
     } catch (e) {
       console.error('Failed to load tasks:', e);
       return [];
@@ -50,10 +51,11 @@ export const storageService = {
 
   saveTasks: (tasks, userId = 'default_user') => {
     try {
+      const activeUserId = userId || 'default_user';
       const raw = localStorage.getItem(KEYS.TASKS);
       let allTasks = raw ? JSON.parse(raw) : [];
-      // Replace user's tasks while preserving other users' tasks
-      allTasks = allTasks.filter(t => t.user_id !== userId && t.user_id !== undefined);
+      // Retain tasks of other users, replace active user's tasks
+      allTasks = allTasks.filter(t => t.user_id && t.user_id !== activeUserId && t.user_id !== 'default_user');
       allTasks = [...allTasks, ...tasks];
       localStorage.setItem(KEYS.TASKS, JSON.stringify(allTasks));
     } catch (e) {
