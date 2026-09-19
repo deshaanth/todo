@@ -1,0 +1,59 @@
+{
+  "name": "SmartTask – To-Do, Priority & Reminder App",
+  "short_name": "SmartTask",
+  "description": "Smart task management with priorities, alarms, notifications, calendar, and recurring tasks.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#6366f1",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='128' fill='%236366f1'/><path d='M160 256l64 64 128-128' stroke='%23ffffff' stroke-width='40' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Add New Task",
+      "short_name": "New Task",
+      "description": "Quickly create a new priority task",
+      "url": "/?action=add_task",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'><path d='M12 5v14M5 12h14' stroke='%23ffffff' stroke-width='3' stroke-linecap='round'/></svg>", "sizes": "96x96" }]
+    },
+    {
+      "name": "Focus Now",
+      "short_name": "Focus Now",
+      "description": "View urgent high priority tasks",
+      "url": "/?tab=home",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ef4444'><path d='M12 2c0 0-6 4-6 10a6 6 0 0 0 12 0c0-6-6-10-6-10z' stroke='%23ffffff' stroke-width='2'/></svg>", "sizes": "96x96" }]
+    }
+  ],
+  "widgets": [
+    {
+      "name": "SmartTask Priority Widget",
+      "short_name": "Task Widget",
+      "description": "Displays urgent priorities and deadlines on your home screen",
+      "tag": "smarttask-home-widget",
+      "template": "smarttask_widget",
+      "ms_ac_template": "widgets/task-widget.json",
+      "data": "widgets/data.json",
+      "type": "text/html",
+      "screenshots": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 150'><rect width='300' height='150' rx='20' fill='%23121826'/><text x='20' y='35' fill='%236366f1' font-size='16' font-weight='bold'>SmartTask Widget</text></svg>",
+          "sizes": "300x150",
+          "label": "Widget Preview"
+        }
+      ],
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><circle cx='48' cy='48' r='40' fill='%236366f1'/></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}
