@@ -93,7 +93,9 @@ export const realtimeService = {
     try {
       const baseUrl = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL) 
         ? import.meta.env.VITE_API_URL 
-        : 'http://localhost:5000';
+        : (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')
+          ? window.location.origin
+          : 'https://temporary-spry-cedar-98ao9oj.vercel.app';
 
       const response = await fetch(`${baseUrl}/api/tasks/sync`, {
         method: 'POST',
